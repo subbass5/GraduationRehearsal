@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tv_lbl_usr">Username :</string>
+    <string name="tv_lbl_pwd">Password :</string>
+    <string name="et_hint_pwd">Password</string>
+    <string name="btn_login">Login</string>
+</resources>

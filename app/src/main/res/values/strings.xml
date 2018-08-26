@@ -20,9 +20,14 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="tv_lbl_usr">Username :</string>
-    <string name="tv_lbl_pwd">Password :</string>
-    <string name="et_hint_usr">Username</string>
-    <string name="et_hint_pwd">Password</string>
-    <string name="btn_login">Login</string>
+    <string name="tv_lbl_usr">ชื่อผู้ใช้ :</string>
+    <string name="tv_lbl_pwd">รหัสผ่าน :</string>
+    <string name="et_hint_usr">ชื่อผู้ใช้</string>
+    <string name="et_hint_pwd">รหัสผ่าน</string>
+    <string name="btn_login">เข้าสู่ระบบ</string>
+    <string name="str_loading">Loading</string>
+    <string name="place_menu">สถานที่ซ้อม</string>
+    <string name="scan_qr_menu">Scan QR Code</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="show_scan_qr_menu">แสดง QR Code</string>
 </resources>

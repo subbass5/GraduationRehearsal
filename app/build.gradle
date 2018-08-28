@@ -30,6 +30,13 @@ dependencies {
     //gson converter by retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
 
+    //card view
+    implementation 'com.android.support:cardview-v7:27.1.1'
+
+    //scan qr bar code
+    implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+    implementation 'com.google.zxing:core:3.2.1'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

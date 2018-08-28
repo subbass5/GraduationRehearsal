@@ -26,6 +26,14 @@ public class Myfer {
     public static String STUDENT = "STUDENT";
 
 
+    public static String ID_NEWS = "id";
+    public static String USERS_ID = "users_id";
+    public static String TOPIC = "topic";
+    public static String DETAIL = "detail";
+    public static String CRE_AT = "created_at";
+    public static String UP_AT = "users_id";
+
+
 
 
 }

@@ -7,5 +7,11 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".StudentActivity"
     tools:showIn="@layout/app_bar_student_main">
+    <FrameLayout
+        android:id="@+id/contentStudent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

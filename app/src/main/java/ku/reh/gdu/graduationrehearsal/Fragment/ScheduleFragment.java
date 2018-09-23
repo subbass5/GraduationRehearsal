@@ -61,8 +61,6 @@ public class ScheduleFragment extends Fragment{
 
     }
 
-
-
     private void showProgress(){
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("กำลังโหลดข้อมูลข่าวสาร");

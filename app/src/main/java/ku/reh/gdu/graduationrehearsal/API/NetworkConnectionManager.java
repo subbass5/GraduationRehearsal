@@ -2,10 +2,13 @@ package ku.reh.gdu.graduationrehearsal.API;
 
 import java.util.List;
 
+import ku.reh.gdu.graduationrehearsal.Model.CheckStdModel;
 import ku.reh.gdu.graduationrehearsal.Model.LoginModel;
 import ku.reh.gdu.graduationrehearsal.Model.NewsModel;
 import ku.reh.gdu.graduationrehearsal.Model.ScheduleModel;
 import ku.reh.gdu.graduationrehearsal.Util.ApiUtil;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -129,6 +132,52 @@ public class NetworkConnectionManager {
 
             @Override
             public void onFailure(Call<List<ScheduleModel>> call, Throwable t) {
+                listener.onFailure(t);
+            }
+
+
+        });
+
+    }
+
+
+    public void callCheckSTD(final OncallbackCheckStdListener listener,String path,String permission,String schedule_id,String checker){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiUtil.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("permission", permission)
+                .addFormDataPart("schedule_id", schedule_id)
+                .addFormDataPart("checker", checker)
+                .build();
+
+        ApiService serv = retrofit.create(ApiService.class);
+        Call call = serv.checkSTD(path,requestBody);
+        call.enqueue(new Callback<CheckStdModel>() {
+
+            @Override
+            public void onResponse(Call<CheckStdModel> call, Response<CheckStdModel> response) {
+                CheckStdModel loginModel = response.body();
+
+                if (loginModel == null) {
+                    //404 or the response cannot be converted to User.
+                    ResponseBody responseBody = response.errorBody();
+                    if (responseBody != null) {
+                        listener.onBodyError(responseBody);
+                    } else {
+                        listener.onBodyErrorIsNull();
+                    }
+                } else {
+                    //200
+                    listener.onResponse(loginModel);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CheckStdModel> call, Throwable t) {
                 listener.onFailure(t);
             }
 

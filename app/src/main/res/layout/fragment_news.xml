@@ -7,12 +7,10 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_marginTop="8dp"
         android:background="#85cccccc"
-        app:layout_constraintBottom_toTopOf="@+id/btn_go_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,16 +22,14 @@
         android:id="@+id/btn_go_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="536dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/bootstrap_brand_info"
         android:text="@string/btn_go_login"
         android:textColor="#FFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/recycleView"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="16dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -169,21 +169,30 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 progressDialog.dismiss();
 
             saveUserData(loginModel);  //save im session
+            try {
+                if(loginModel.getPermission().equals(TEACHER)){
 
-            if(loginModel.getPermission().equals(TEACHER)){
+                    Intent intent = new Intent(context,TeacherActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
 
-                Intent intent = new Intent(context,TeacherActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-
-            }else if(loginModel.getPermission().equals(STUDENT)){
-                Intent intent = new Intent(context,StudentActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }else{
+                }else if(loginModel.getPermission().equals(STUDENT)){
+                    Intent intent = new Intent(context,StudentActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+                }else{
+                    et_usr.setText("");
+                    et_pwd.setText("");
+                    Toast.makeText(context, "ชื่อหรือรหัสผ่านไม่ถูกต้องกรุณาตรวจสอบอีกครั้ง", Toast.LENGTH_SHORT).show();
+                }
+            }catch (Exception e){
+                e.printStackTrace();
                 et_usr.setText("");
                 et_pwd.setText("");
+                Toast.makeText(context, "ชื่อหรือรหัสผ่านไม่ถูกต้องกรุณาตรวจสอบอีกครั้ง", Toast.LENGTH_SHORT).show();
             }
+
+
 
         }
 

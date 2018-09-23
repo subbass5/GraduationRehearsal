@@ -6,7 +6,7 @@ public class Myfer {
     public static String MY_FER = "myfer";
     public static String UID = "id";
     public static String PERFIX = "perfix";
-    public static String NAME = "identify_id";
+    public static String NAME = "name";
     public static String IDENTIFY_ID = "identify_id";
     public static String ID_CARD = "idcard";
     public static String TEL = "tel";
@@ -32,6 +32,8 @@ public class Myfer {
     public static String DETAIL = "detail";
     public static String CRE_AT = "created_at";
     public static String UP_AT = "users_id";
+
+    public static String SCHEDULES_ID = "schedules_id";
 
 
 

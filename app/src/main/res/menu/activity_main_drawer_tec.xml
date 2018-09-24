@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_qr_scan"
             android:title="@string/scan_qr_menu" />
         <item
+            android:id="@+id/nav_practice"
+            android:icon="@drawable/ic_practice"
+            android:title="การปฏิบัติ" />
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout"
             android:title="ออกจากระบบ" />

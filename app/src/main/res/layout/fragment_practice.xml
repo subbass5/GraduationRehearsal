@@ -1,18 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_schedule"
+        android:id="@+id/recyclePractice"
+        android:background="#79d4d3d3"
+        tools:listitem="@layout/row_practice"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#CCC"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:listitem="@layout/row_schedule">
+        android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
 

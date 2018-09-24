@@ -1,5 +1,6 @@
 package ku.reh.gdu.graduationrehearsal;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,10 +32,15 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import ku.reh.gdu.graduationrehearsal.API.NetworkConnectionManager;
 import ku.reh.gdu.graduationrehearsal.API.OncallbackCheckStdListener;
+import ku.reh.gdu.graduationrehearsal.API.OncallbackPracticeListener;
+import ku.reh.gdu.graduationrehearsal.Fragment.PracticeFragment;
 import ku.reh.gdu.graduationrehearsal.Fragment.ScheduleFragment;
 import ku.reh.gdu.graduationrehearsal.Model.CheckStdModel;
+import ku.reh.gdu.graduationrehearsal.Model.PracticeModel;
 import ku.reh.gdu.graduationrehearsal.Util.ApiUtil;
 import ku.reh.gdu.graduationrehearsal.Util.Myfer;
 import okhttp3.ResponseBody;
@@ -57,6 +63,9 @@ public class TeacherActivity extends AppCompatActivity
 
     Context context;
     private String TAG = "TeacherActivity";
+
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,6 +151,12 @@ public class TeacherActivity extends AppCompatActivity
         builder.show();
     }
 
+    private void showProgress(){
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("กำลังโหลดข้อมูล");
+        progressDialog.show();
+    }
+
     @Override
     public void onBackPressed() {
         drawer = findViewById(R.id.drawer_layout);
@@ -150,9 +165,13 @@ public class TeacherActivity extends AppCompatActivity
         }
         do_logout();
     }
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+
         try{
+
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
             String getID = result.getContents();
             String[] res = getID.split("/");
@@ -162,8 +181,10 @@ public class TeacherActivity extends AppCompatActivity
 
 
 //            Toast.makeText(context, "Result = "+sharedPreferences.getString(Myfer.PERMISSION,""), Toast.LENGTH_SHORT).show();
+            showProgress();
                 new NetworkConnectionManager().callCheckSTD(checkStdListener,res[6],permission,schedule_id,checker);
-            Log.e(TAG,""+res[6]);
+                Log.e(TAG,res[6]+" "+ permission+" , "+schedule_id+"  , "+checker);
+//            Log.e(TAG,""+res[6]);
 
 
         }catch (Exception e){
@@ -176,8 +197,9 @@ public class TeacherActivity extends AppCompatActivity
     OncallbackCheckStdListener checkStdListener = new OncallbackCheckStdListener() {
         @Override
         public void onResponse(CheckStdModel checkStdModel) {
-//            String result = new Gson().toJson(checkStdModel);
-//            Log.e("Response",result);
+            String result = new Gson().toJson(checkStdModel);
+            Log.e("Response",result);
+
             showUser(ApiUtil.BASE_URL+checkStdModel.getImage(),
                     checkStdModel.getName(),
                     checkStdModel.getIdentifyId(),
@@ -185,20 +207,35 @@ public class TeacherActivity extends AppCompatActivity
                     checkStdModel.getClassRoom(),
                     checkStdModel.getTel(),
                     checkStdModel.getEmail());
+
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
         }
 
         @Override
         public void onBodyError(ResponseBody responseBodyError) {
             Log.e(TAG,""+responseBodyError.source());
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
         }
 
         @Override
         public void onBodyErrorIsNull() {
             Log.e(TAG,"null");
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
         }
 
         @Override
         public void onFailure(Throwable t) {
+
+            if(progressDialog.isShowing()){
+                progressDialog.dismiss();
+            }
+
             t.printStackTrace();
         }
     };
@@ -260,7 +297,11 @@ public class TeacherActivity extends AppCompatActivity
             integrator.setBarcodeImageEnabled(false);
             integrator.initiateScan();
 
-        } else if (id == R.id.nav_logout) {
+        } else if(id == R.id.nav_practice){
+
+            fragmentTran(new PracticeFragment(),null);
+
+        }else if (id == R.id.nav_logout) {
             do_logout();
         }
         drawer =  findViewById(R.id.drawer_layout);

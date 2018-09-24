@@ -72,6 +72,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         et_usr = v.findViewById(R.id.et_usr);
         et_pwd = v.findViewById(R.id.et_pwd);
 
+//        et_usr.setText("kik");
+//        et_pwd.setText("123456");
+
         v.findViewById(R.id.btn_login).setOnClickListener(this);
         v.findViewById(R.id.btn_news).setOnClickListener(this);
 

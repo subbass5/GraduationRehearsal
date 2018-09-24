@@ -5,6 +5,7 @@ import java.util.List;
 import ku.reh.gdu.graduationrehearsal.Model.CheckStdModel;
 import ku.reh.gdu.graduationrehearsal.Model.LoginModel;
 import ku.reh.gdu.graduationrehearsal.Model.NewsModel;
+import ku.reh.gdu.graduationrehearsal.Model.PracticeModel;
 import ku.reh.gdu.graduationrehearsal.Model.ScheduleModel;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -31,9 +32,15 @@ public interface ApiService {
     @GET("app/schedule")
     Call<List<ScheduleModel>> schedule();
 
+
+    @GET("app/get-practice")
+    Call<List<PracticeModel>> practice();
+
+
 //    @FormUrlEncoded
     @POST("app/student/find/{id}")
     Call<CheckStdModel> checkSTD(@Path("id") String id, @Body RequestBody body);
+
 
 //    Call<CheckStdModel> checkSTD(@Path("id") String id, @Field("permission") String permission, @Field("schedules_id") String schedules_id);
 
